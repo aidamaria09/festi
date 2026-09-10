@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { db } from "../db/index.js";
 import { toFestival, type FestivalRow } from "../db/festivalRow.js";
-import { AmadeusError, searchFlights, searchHotels } from "../lib/amadeus.js";
+import { SkyscannerError, searchFlights } from "../lib/skyscanner.js";
 
 export const travelRouter = Router();
 
-// Amadeus city codes map cleanly onto the destination city names Skyscanner/Booking expect.
+// Amadeus-style city codes map cleanly onto the destination city names Skyscanner/Booking expect.
 const CITY_NAMES: Record<string, string> = {
   BRU: "Brussels",
   BUD: "Budapest",
@@ -79,7 +79,7 @@ travelRouter.get("/flights", async (req, res) => {
 
     res.json({ configured, offers, bookingSearchUrl });
   } catch (err) {
-    const status = err instanceof AmadeusError ? err.status : 502;
+    const status = err instanceof SkyscannerError ? err.status : 502;
     res.status(status).json({
       error: err instanceof Error ? err.message : "Flight search failed",
       bookingSearchUrl,
@@ -87,6 +87,9 @@ travelRouter.get("/flights", async (req, res) => {
   }
 });
 
+// Live hotel pricing isn't wired to a provider yet - no self-serve hotel-price API has
+// been verified end-to-end (see README). This always hands back a working Booking.com
+// search link so the feature is honest about what it does today rather than faking it.
 travelRouter.get("/hotels", async (req, res) => {
   const { festivalId, checkInDate, checkOutDate, adults } = req.query;
 
@@ -104,20 +107,5 @@ travelRouter.get("/hotels", async (req, res) => {
   const adultsCount = Number(adults) > 0 ? Number(adults) : 1;
   const bookingSearchUrl = bookingUrl(festival.cityCode, checkInDate, checkOutDate, adultsCount);
 
-  try {
-    const { configured, offers } = await searchHotels({
-      cityCode: festival.cityCode,
-      checkInDate,
-      checkOutDate,
-      adults: adultsCount,
-    });
-
-    res.json({ configured, offers, bookingSearchUrl });
-  } catch (err) {
-    const status = err instanceof AmadeusError ? err.status : 502;
-    res.status(status).json({
-      error: err instanceof Error ? err.message : "Hotel search failed",
-      bookingSearchUrl,
-    });
-  }
+  res.json({ configured: false, offers: [], bookingSearchUrl });
 });
