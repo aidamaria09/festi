@@ -102,4 +102,4 @@ The original was four Romanian HTML pages that each duplicated the same ~300 lin
 
 ## Credits
 
-Built by Aida Staicu & Alessia Tecu.
+Built by Aida Staicu.
