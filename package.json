@@ -1,0 +1,15 @@
+{
+  "name": "festi",
+  "private": true,
+  "version": "1.0.0",
+  "description": "FESTI - a music festival discovery app for Europe (React + Express)",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "concurrently -n backend,frontend -c blue,magenta \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "test": "npm run test --prefix backend && npm run test --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

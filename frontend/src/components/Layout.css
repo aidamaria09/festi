@@ -1,0 +1,58 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--color-surface);
+  padding: 18px 24px;
+}
+
+.site-logo {
+  height: 60px;
+  width: auto;
+  border-radius: 8px;
+}
+
+.site-header h1 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: var(--color-accent);
+}
+
+.site-nav {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.site-nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav li {
+  flex: 1;
+  text-align: center;
+}
+
+.site-nav a {
+  display: block;
+  padding: 18px 0;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  background-color: var(--color-accent);
+  color: black;
+}
+
+.site-footer {
+  padding: 26px 20px;
+  text-align: center;
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,25 @@
+.testimonials {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius);
+  padding: 30px;
+  height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.testimonials h3 {
+  text-align: center;
+  color: var(--color-accent);
+  margin: 0 0 10px;
+}
+
+.testimonials blockquote {
+  font-style: italic;
+  color: var(--color-text-muted);
+  border-left: 4px solid var(--color-accent);
+  padding-left: 15px;
+  margin: 0;
+}

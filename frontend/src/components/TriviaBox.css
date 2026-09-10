@@ -1,0 +1,19 @@
+.trivia-section {
+  padding: 60px 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.trivia-section h3 {
+  font-size: 2.2rem;
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.trivia-fact {
+  font-size: 1.4rem;
+  font-weight: 600;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+}

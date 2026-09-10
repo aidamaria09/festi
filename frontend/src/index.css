@@ -1,0 +1,105 @@
+:root {
+  --color-accent: #a259ff;
+  --color-accent-light: #c496ff;
+  --color-bg: #14121a;
+  --color-surface: rgba(0, 0, 0, 0.75);
+  --color-surface-soft: rgba(255, 255, 255, 0.08);
+  --color-text: #ffffff;
+  --color-text-muted: #cccccc;
+  --radius: 12px;
+  --shadow-accent: 0 0 15px rgba(162, 89, 255, 0.35);
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  border-radius: var(--radius);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.page-hero-bg {
+  background: linear-gradient(rgba(10, 8, 14, 0.55), rgba(10, 8, 14, 0.7)),
+    url("https://images.unsplash.com/photo-1503803508152-7790ae3cb125?fm=jpg&q=60&w=2000")
+      center/cover fixed no-repeat;
+  min-height: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 34px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-primary:hover {
+  background-color: white;
+  color: #1a1a1a;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: var(--color-accent);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

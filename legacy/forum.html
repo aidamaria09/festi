@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forum - FESTI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1503803508152-7790ae3cb125') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+      margin-right: 20px;
+    }
+    header h1 {
+      color: #a259ff;
+      font-size: 2rem;
+    }
+    nav {
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      flex: 1;
+      text-align: center;
+    }
+    nav ul li a {
+      display: block;
+      padding: 20px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      background-color: #a259ff;
+      color: black;
+    }
+    .forum-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .message {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background-color: #a259ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .bubble {
+      background-color: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 10px 15px;
+      max-width: 80%;
+      color: white;
+    }
+    .bubble .meta {
+      font-size: 0.8rem;
+      color: #ccc;
+      margin-bottom: 5px;
+    }
+    .input-area {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .input-area input,
+    .input-area textarea {
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    .input-area button {
+      align-self: flex-start;
+      background-color: #a259ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .input-area button:hover {
+      background-color: white;
+      color: #1a1a1a;
+    }
+    footer {
+      padding: 30px 20px;
+      text-align: center;
+      background-color: rgba(0,0,0,0.8);
+      color: #ccc;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="FESTI Logo">
+    <h1>FESTI - Forum</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Acasă</a></li>
+      <li><a href="festivaluri.html">Festivaluri</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="forum.html">Forum</a></li>
+    </ul>
+  </nav>
+  <div class="forum-container">
+    <div class="messages" id="forum-messages"></div>
+    <div class="input-area">
+      <input type="text" id="forum-name" placeholder="Numele tău">
+      <textarea id="forum-message" rows="3" placeholder="Mesajul tău..."></textarea>
+      <button onclick="postForumMessage()">📨 Trimite mesaj</button>
+    </div>
+  </div>
+  <footer>
+    <p style="margin: 0;">🌍 Creatori: <strong>Staicu Aida</strong> & <strong>Tecu Alessia</strong> • © FESTI</p>
+  </footer>
+
+  <script>
+    function initials(name) {
+      return name.split(' ').map(n => n[0]).join('').toUpperCase();
+    }
+
+    function loadForumMessages() {
+      const container = document.getElementById("forum-messages");
+      const messages = JSON.parse(localStorage.getItem("festi_forum")) || [];
+      container.innerHTML = "";
+      messages.forEach(msg => {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = "message";
+
+        const avatar = document.createElement("div");
+        avatar.className = "avatar";
+        avatar.textContent = initials(msg.name);
+
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = msg.name + " • " + msg.date;
+
+        const text = document.createElement("div");
+        text.textContent = msg.text;
+
+        bubble.appendChild(meta);
+        bubble.appendChild(text);
+
+        msgDiv.appendChild(avatar);
+        msgDiv.appendChild(bubble);
+        container.appendChild(msgDiv);
+      });
+    }
+
+    function postForumMessage() {
+      const name = document.getElementById("forum-name").value.trim();
+      const text = document.getElementById("forum-message").value.trim();
+      if (!name || !text) return alert("Completează toate câmpurile!");
+
+      const msg = {
+        name,
+        text,
+        date: new Date().toLocaleString("ro-RO")
+      };
+
+      const messages = JSON.parse(localStorage.getItem("festi_forum")) || [];
+      messages.push(msg);
+      localStorage.setItem("festi_forum", JSON.stringify(messages));
+      document.getElementById("forum-name").value = "";
+      document.getElementById("forum-message").value = "";
+      loadForumMessages();
+    }
+
+    window.onload = loadForumMessages;
+  </script>
+</body>
+</html>

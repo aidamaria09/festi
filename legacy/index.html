@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html lang="ro">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FESTI - Festivaluri în Europa</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1503803508152-7790ae3cb125?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+    }
+    header img { height: 70px; margin-right: 20px; }
+    header h1 { font-size: 2.5rem; margin: 0; color: #a259ff; }
+    nav { width: 100%; background-color: rgba(0, 0, 0, 0.85); }
+    nav ul { display: flex; margin: 0; padding: 0; list-style: none; }
+    nav ul li { flex: 1; text-align: center; }
+    nav ul li a {
+      display: block;
+      padding: 20px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    nav ul li a:hover { background-color: #a259ff; color: black; }
+    .content {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+   .content h2 { font-size: 2.8rem; color: white; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); }
+    .intro-desc {
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-top: 10px;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .start-btn, .ai-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .start-btn { background-color: #a259ff; color: white; box-shadow: 0 0 10px #a259ff; }
+    .start-btn:hover { background-color: white; color: #1a1a1a; }
+    .ai-btn { background-color: #ffffff; color: #a259ff; border: 2px solid #a259ff; }
+    .ai-btn:hover { background-color: #a259ff; color: white; }
+    small { display: block; margin-top: 10px; color: #ccc; }
+    .top-festivals {
+      padding: 60px 20px;
+      background-color: rgba(0, 0, 0, 0.75);
+      text-align: center;
+    }
+    .top-festivals h3 { font-size: 2rem; color: #a259ff; margin-bottom: 40px; }
+    .festival-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .festival-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(162, 89, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .festival-card:hover { transform: scale(1.03); }
+    .festival-card img { width: 100%; height: 180px; object-fit: cover; }
+    .festival-info { padding: 15px; }
+    .festival-info h4 { margin: 10px 0 5px; color: #a259ff; font-size: 1.3rem; }
+    .festival-info p { font-size: 0.95rem; color: #ccc; }
+    .testimonials {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .testimonials h3 {
+      font-size: 2rem;
+      color: #a259ff;
+      margin-bottom: 30px;
+    }
+    .testimonials blockquote {
+      font-style: italic;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 10px auto;
+      color: #ccc;
+      border-left: 4px solid #a259ff;
+      padding-left: 15px;
+    }
+  .testimonials::-webkit-scrollbar { display: none; }
+
+/* Quiz Integration Fixes */
+#quiz-section {
+  padding: 60px 20px;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-container {
+  background-color: transparent;
+  padding: 20px;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.quiz-question {
+  font-size: 2rem;
+  color: #a259ff;
+  text-shadow: 1px 1px 6px black;
+}
+
+.quiz-container button {
+  width: auto;
+  min-width: 240px;
+  display: block;
+  margin: 10px auto;
+  font-size: 1.1rem;
+}
+
+.festival-card {
+  margin-top: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.reset-btn {
+  margin-top: 20px;
+  background-color: #ff4c4c;
+  color: white;
+  width: auto;
+  padding: 12px 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.quiz-container button {
+  background-color: #a259ff;
+  color: white;
+  box-shadow: 0 0 10px #a259ff;
+  border: none;
+}
+
+.quiz-container button:hover {
+  background-color: white;
+  color: #1a1a1a;
+}
+
+.festival-card {
+  background-color: #a259ff;
+  color: white;
+  box-shadow: 0 0 15px rgba(162, 89, 255, 0.4);
+}
+
+.festival-card h3 {
+  color: white;
+}
+
+.festival-card p {
+  color: #f0eaff;
+}
+
+
+.quiz-question {
+  text-align: center;
+}
+
+.return-btn {
+  background-color: #ffffff;
+  color: #a259ff;
+  border: 2px solid #a259ff;
+  padding: 12px 30px;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.return-btn:hover {
+  background-color: #a259ff;
+  color: white;
+}
+
+
+button {
+  border-radius: 12px !important;
+}
+
+
+.festival-info h4 {
+  color: #a259ff !important;
+}
+
+
+.festival-card h4, .festival-info h4 {
+  color: #a259ff !important;
+  text-shadow: 1px 1px 4px black;
+}
+
+/* Fix for white festival titles */
+.festival-card h4, .festival-info h4 {
+  color: white !important;
+  text-shadow: 1px 1px 4px black;
+}
+</style>
+<link href="https://unpkg.com/leaflet/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<img alt="FESTI Logo" src="logo.png">
+<h1>FESTI</h1>
+</header>
+<nav>
+<ul>
+<li><a href="index.html">Acasă</a></li>
+<li><a href="festivaluri.html">Festivaluri</a></li>
+
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="forum.html">Forum</a></li>
+
+</ul>
+</nav>
+<div class="content">
+<h2>Descoperă cele mai tari festivaluri din Europa</h2>
+<p class="intro-desc">
+    FESTI este ghidul tău digital pentru a descoperi festivaluri muzicale din toată Europa – adaptate pe gustul tău.
+  </p>
+<button class="start-btn" onclick="startQuiz()"> Începe Quiz-ul</button>
+<small>Mai puțin de 1 minut și afli ce ți se potrivește!</small>
+</div>
+<div id="quiz-section" style="display:none">
+<div class="quiz-container">
+<div id="quiz">
+<h2 class="quiz-question">Ce gen muzical preferi?</h2>
+<button onclick="answerQuestion('genre', 'Rock')">Rock</button>
+<button onclick="answerQuestion('genre', 'Techno')">Techno</button>
+<button onclick="answerQuestion('genre', 'Pop')">Pop</button>
+<button onclick="answerQuestion('genre', 'EDM')">EDM</button>
+<button onclick="answerQuestion('genre', 'Indie')">Indie</button>
+</div>
+<div id="result" style="display:none">
+<h2 class="quiz-question">🎉 Festival recomandat:</h2>
+<div id="festival-display"></div>
+<button class="reset-btn" onclick="resetQuiz()">🔄 Reia quizul</button>
+<button class="return-btn" onclick="returnHome()">Înapoi la început</button>
+</div>
+</div>
+</div>
+<section class="top-festivals">
+<h3> Top 8 festivaluri din Europa</h3>
+<div class="festival-grid">
+<a class="festival-card" href="https://www.tomorrowland.com/" rel="noopener noreferrer" target="_blank">
+<img alt="Tomorrowland" src="https://djmag.com/sites/default/files/styles/djm_23_961x540_jpg/public/2023-08/tomorrowland-top-100-festivals_0.jpg?itok=XwQ_HNo9"/>
+<div class="festival-info">
+<h4>Tomorrowland</h4>
+<p>Belgia • Cel mai spectaculos festival de muzică electronică din lume.</p>
+</div>
+</a>
+<a class="festival-card" href="https://szigetfestival.com/" rel="noopener noreferrer" target="_blank">
+<img alt="Sziget" src="https://szigetfestival.com/wp-content/uploads/2024/03/DJI_20240810214150_0325_D-scaled.jpg"/>
+<div class="festival-info">
+<h4>Sziget</h4>
+<p>Ungaria • O insulă de libertate, artă și muzică pentru sute de mii de oameni.</p>
+</div>
+</a>
+<a class="festival-card" href="https://untold.com/" rel="noopener noreferrer" target="_blank">
+<img alt="Untold" src="https://viacluj.tv/wp-content/uploads/2022/08/untold-3.jpg"/>
+<div class="festival-info">
+<h4>Untold</h4>
+<p>România • Magie, lumini și energie într-un festival uriaș de EDM și pop.</p>
+</div>
+</a>
+<a class="festival-card" href="https://boomfestival.org/" rel="noopener noreferrer" target="_blank">
+<img alt="Boom Festival" src="https://tribalreunion.com/wpfiles/wp-content/uploads/2020/05/Boom-festival-6608.jpg"/>
+<div class="festival-info">
+<h4>Boom</h4>
+<p>Portugalia • Experiență alternativă cu techno, artă și natură.</p>
+</div>
+</a>
+<a class="festival-card" href="https://www.primaverasound.com/" rel="noopener noreferrer" target="_blank">
+<img alt="Primavera Sound" src="https://static01.nyt.com/images/2014/06/01/arts/music/20140601PRIMA-slide-LEBV/20140601PRIMA-slide-LEBV-superJumbo.jpg"/>
+<div class="festival-info">
+<h4>Primavera Sound</h4>
+<p>Spania • Un mix urban de indie, electronică și artă contemporană.</p>
+</div>
+</a>
+<a class="festival-card" href="https://electriccastle.ro/" rel="noopener noreferrer" target="_blank">
+<img alt="Electric Castle" src="https://media.electriccastle.ro/stories/article/ECMag_Choosing_the_right_festival_thumbnail.jpg"/>
+<div class="festival-info">
+<h4>Electric Castle</h4>
+<p>România • Muzică, tehnologie și atmosferă magică într-un castel transilvănean.</p>
+</div>
+</a>
+<a class="festival-card" href="https://www.dimensionsfestival.com/" rel="noopener noreferrer" target="_blank">
+<img alt="Dimensions" src="https://www.visit-croatia.co.uk/wp-content/uploads/2022/02/210904_DIMENSIONS_2021_JakeDavis_@jakephilipdaviis_@khromacollective-3537.jpg"/>
+<div class="festival-info">
+<h4>Dimensions</h4>
+<p>Croația • Subteran și techno la malul mării, într-un decor industrial superb.</p>
+</div>
+</a>
+<a class="festival-card" href="https://www.jazzinthepark.ro/" rel="noopener noreferrer" target="_blank">
+<img alt="Jazz in the Park" src="https://clujwebstory.ro/images/2024/06/Jazz-in-the-Park-Competition-2.jpg"/>
+<div class="festival-info">
+<h4>Jazz in the Park</h4>
+<p>România • Jazz, chill și comunitate într-un parc plin de atmosferă și relaxare.</p>
+</div>
+</a>
+</div>
+</section>
+<section class="map-section" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: flex-start; padding: 60px 20px; background-color: rgba(0, 0, 0, 0.8);">
+<div style="flex: 1; min-width: 300px; max-width: 600px;">
+<h2 style="font-size: 2.5rem; color: #a259ff; margin-bottom: 10px;">Unde se țin festivalurile?</h2>
+<p style="color:#ccc; font-size: 1rem; max-width: 700px; margin-bottom: 30px;">Descoperă pe hartă unde au loc cele mai iubite festivaluri din Europa. Dă click pe un marker pentru a merge direct pe site-ul oficial.</p>
+<div id="festivalMap" style="height: 600px; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);"></div>
+</div>
+<div class="testimonials" style="flex: 1; min-width: 300px; max-width: 600px; height: 600px; background-color: rgba(0,0,0,0.6); padding: 30px; border-radius: 12px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; justify-content: flex-start; gap: 20px; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;; margin-top: 180px">
+<h3 style="font-size: 2rem; color: #a259ff; margin-bottom: 10px; text-align: center;"> Ce spun festivalierii:</h3>
+<blockquote style="margin: 0; padding: 5px 0;">“„FESTI mi-a salvat vara! Am descoperit un festival din Croația care mi-a schimbat viața.””</blockquote>
+<blockquote style="margin: 0; padding: 5px 0;">“„N-aș fi ajuns niciodată la Boom Festival fără recomandarea de aici!””</blockquote>
+<blockquote style="margin: 0; padding: 5px 0;">“„Site-ul arată genial și quiz-ul chiar funcționează! Am fost la Sziget și m-am împrietenit cu oameni din 5 țări!””</blockquote>
+<blockquote style="margin: 0; padding: 5px 0;">“„Îmi place că pot filtra festivalurile după vibe! Eu am găsit unul exact pe plajă.””</blockquote>
+<blockquote style="margin: 0; padding: 5px 0;">“„Quiz-ul mi-a recomandat Dimensions și a fost spot on. Mă duc iar anul viitor!””</blockquote>
+</div>
+</section>
+<section id="trivia-section" style="padding: 80px 20px; background-color: rgba(0,0,0,0.6); text-align: center;">
+  <h3 style="color: white; font-size: 3rem; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">🧠 Știați că...?</h3>
+  <p id="trivia-fact" style="color: #ffffff; font-size: 1.6rem; font-weight: bold; max-width: 900px; margin: 0 auto 40px; text-shadow: 1px 1px 6px rgba(0,0,0,0.7);"></p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 30px;">
+    <iframe width="360" height="215" src="https://www.youtube.com/embed/K7WHi4yZiX8" frameborder="0" allowfullscreen></iframe><iframe width="360" height="215" src="https://www.youtube.com/embed/_9womMYx3yw" frameborder="0" allowfullscreen></iframe><iframe width="360" height="215" src="https://www.youtube.com/embed/cRVTvr6Xjd8" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <button onclick="showRandomTrivia()" style="background-color: #a259ff; color: white; border: none; padding: 12px 30px; font-size: 1.2rem; border-radius: 10px; cursor: pointer;">🔄 Află altceva</button>
+</section>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  const map = L.map('festivalMap').setView([47, 10], 4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const festivals = [
+    { name: "Tomorrowland", coords: [51.091, 4.403], url: "https://www.tomorrowland.com/" },
+    { name: "Sziget", coords: [47.555, 19.046], url: "https://szigetfestival.com/" },
+    { name: "Untold", coords: [46.77, 23.59], url: "https://untold.com/" },
+    { name: "Boom", coords: [39.61, -7.49], url: "https://boomfestival.org/" },
+    { name: "Primavera", coords: [41.39, 2.17], url: "https://www.primaverasound.com/" },
+    { name: "Electric Castle", coords: [46.90, 23.74], url: "https://electriccastle.ro/" },
+    { name: "Dimensions", coords: [44.87, 13.85], url: "https://www.dimensionsfestival.com/" },
+    { name: "Jazz in the Park", coords: [46.77, 23.60], url: "https://www.jazzinthepark.ro/" }
+  ];
+
+  festivals.forEach(f => {
+    L.marker(f.coords).addTo(map)
+      .bindPopup(`<a href="${f.url}" target="_blank">${f.name}</a>`);
+  });
+</script>
+<script>
+function startQuiz() {
+  const quizSection = document.getElementById('quiz-section');
+  document.querySelector('.content').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+}
+
+const festivalData = [
+  { name: "Sziget", genre: "Rock", vibe: "Urban", size: "Uriaș (>50.000)", location: "Ungaria", image: "https://budapest-travel-tips.com/wp-content/uploads/2018/11/Sziget_festival_budapest.jpg" },
+  { name: "Boom", genre: "Techno", vibe: "Natură", size: "Intim (<5.000)", location: "Portugalia", image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRSDEMcAQz1GIWUJ92QKrPkMjNtg-NR_V3Zi_mUPMmqfhHm-mDYBAmmuL0OTDRn3-eZPs1qBxDN5Wns-imV05jyjg6XidUwUroAxH4vx5A" },
+  { name: "Untold", genre: "Pop", vibe: "Urban", size: "Uriaș (>50.000)", location: "România", image: "https://storage0.dms.mpinteractiv.ro/media/1/1481/21334/22087186/1/7-untold.jpg" },
+  { name: "Tomorrowland", genre: "EDM", vibe: "Plajă", size: "Uriaș (>50.000)", location: "Belgia", image: "https://cdn.uc.assets.prezly.com/fe193220-6aa9-47fa-83bc-51d0d5d12e49/-/resize/1108x/-/quality/best/-/format/auto/" },
+  { name: "Meadows", genre: "Indie", vibe: "Munte", size: "Intim (<5.000)", location: "Bulgaria", image: "https://i0.wp.com/liveforlivemusic.com/wp-content/uploads/2018/08/the-meadows-day-one-Stages-and-people-9.15.17-chad-anderson-photography-8479-1200x630.jpg?resize=740%2C390&ssl=1" },
+  { name: "Dimensions", genre: "Techno", vibe: "Plajă", size: "Mediu", location: "Croația", image: "https://images.rove.me/w_1920,q_85/f2sw6ovqo4t2uymffwix/croatia-dimensions-festival.jpg" },
+  { name: "Electric Castle", genre: "EDM", vibe: "Castel", size: "Mediu", location: "România", image: "https://clujwebstory.ro/images/2024/07/EC-sign.jpg" },
+  { name: "Jazz in the Park", genre: "Indie", vibe: "Natură", size: "Mediu", location: "România", image: "https://yourope.org/wp-content/uploads/2023/04/jazz-in-the-park-3.jpg" },
+  { name: "Fusion", genre: "Rock", vibe: "Munte", size: "Intim (<5.000)", location: "Germania", image: "https://undergroundsound.eu/wp-content/uploads/2024/01/Fusion-6-by-Montecruz-Foto.jpg" },
+];
+
+let userSelection = {};
+
+function answerQuestion(key, value) {
+  userSelection[key] = value;
+
+  if (!userSelection.vibe && key === 'genre') {
+    showQuestion('Ce vibe preferi?', ['Urban', 'Natură', 'Plajă', 'Castel', 'Munte'], 'vibe');
+  } else if (!userSelection.size && key === 'vibe') {
+    showQuestion('Cât de mare să fie festivalul?', ['Intim (<5.000)', 'Mediu', 'Uriaș (>50.000)'], 'size');
+  } else if (key === 'size') {
+    showResult();
+  }
+}
+
+function showQuestion(question, options, nextKey) {
+  const quiz = document.getElementById('quiz');
+  quiz.innerHTML = `<h2 class="quiz-question">${question}</h2>`;
+  options.forEach(opt => {
+    quiz.innerHTML += `<button onclick="answerQuestion('${nextKey}', '${opt}')">${opt}</button>`;
+  });
+}
+
+function showResult() {
+  const quiz = document.getElementById('quiz');
+  const result = document.getElementById('result');
+  const display = document.getElementById('festival-display');
+
+  quiz.style.display = 'none';
+  result.style.display = 'block';
+
+  const match = festivalData.find(f =>
+    f.genre === userSelection.genre &&
+    f.vibe === userSelection.vibe &&
+    f.size === userSelection.size
+  ) || festivalData[Math.floor(Math.random() * festivalData.length)];
+
+  display.innerHTML = `
+    <div class="festival-card">
+      <img src="${match.image}" alt="${match.name}" />
+      <h3>${match.name}</h3>
+      <p>${match.location} • ${match.genre} • ${match.size}</p>
+    </div>
+  `;
+}
+
+function resetQuiz() {
+  userSelection = {};
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  document.getElementById('quiz').innerHTML = `
+    <h2 class="quiz-question">Ce gen muzical preferi?</h2>
+    <button onclick="answerQuestion('genre', 'Rock')">Rock</button>
+    <button onclick="answerQuestion('genre', 'Techno')">Techno</button>
+    <button onclick="answerQuestion('genre', 'Pop')">Pop</button>
+    <button onclick="answerQuestion('genre', 'EDM')">EDM</button>
+    <button onclick="answerQuestion('genre', 'Indie')">Indie</button>
+  `;
+}
+
+
+function returnHome() {
+  document.getElementById('quiz-section').style.display = 'none';
+  document.querySelector('.content').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<script>
+  const triviaFacts = ['Tomorrowland are propriul său zbor charter și check-in la aeroport!', 'Sziget se desfășoară pe o insulă din mijlocul Budapestei.', 'Primavera Sound a avut peste 400 de artiști într-o singură ediție.', 'Boom Festival se organizează doar o dată la 2 ani.', 'Jazz in the Park a fost primul festival de jazz într-un parc public din România.', 'La Electric Castle, ploaia a devenit tradiție. Organizatorii oferă pelerine gratis!', 'Untold are propriul imn oficial în fiecare an.', 'La Dimensions Festival, unele scene sunt în buncăre WW2.', 'Fusion Festival din Germania este complet organizat de voluntari.', 'Boom promovează sustenabilitatea – nu are reclame comerciale.', 'Electric Castle are și expoziții de artă interactivă.', 'Sziget oferă camping gratuit pe toată durata festivalului.', 'Tomorrowland are propriul brand de bere artizanală.'];
+
+  function showRandomTrivia() {
+    const random = triviaFacts[Math.floor(Math.random() * triviaFacts.length)];
+    document.getElementById('trivia-fact').textContent = random;
+  }
+
+  window.onload = function () {
+    showRandomTrivia();
+    if (typeof returnHome === "function") returnHome();
+  };
+</script>
+
+
+<section id="contact" style="padding: 60px 20px; background-color: rgba(0,0,0,0.8); color: white; text-align: center;">
+  <h2 style="font-size: 2.5rem; color: #a259ff; margin-bottom: 20px;">📬 Contactează-ne</h2>
+  <p style="max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; color: #ccc;">
+    Ai întrebări, sugestii sau vrei să colaborezi cu noi? Trimite-ne un mesaj și îți răspundem cât mai curând!
+  </p>
+  <form onsubmit="sendContactMessage(event)" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+    <input type="text" id="contact-name" placeholder="Numele tău" required style="padding: 12px; border-radius: 10px; border: none;" />
+    <input type="email" id="contact-email" placeholder="Emailul tău" required style="padding: 12px; border-radius: 10px; border: none;" />
+    <textarea id="contact-message" placeholder="Mesajul tău..." required rows="5" style="padding: 12px; border-radius: 10px; border: none;"></textarea>
+    <button type="submit" style="background-color: #a259ff; color: white; border: none; padding: 12px; font-size: 1.1rem; border-radius: 10px;">📨 Trimite</button>
+  </form>
+</section>
+<footer style="padding: 30px 20px; text-align: center; background-color: rgba(0,0,0,0.8); color: #ccc; font-size: 1rem;">
+  <p style="margin: 0;"> Creatori: <strong>Staicu Aida</strong> & <strong>Tecu Alessia</strong> • © FESTI</p>
+
+
+
+
+
+
+</footer>
+
+
+<script>
+  function loadForumMessages() {
+    const container = document.getElementById("forum-messages");
+    const messages = JSON.parse(localStorage.getItem("festi_forum")) || [];
+    container.innerHTML = messages.map(msg => `
+      <div style="background: rgba(255,255,255,0.1); padding: 15px; margin-bottom: 10px; border-radius: 10px;">
+        <strong>${msg.name}</strong> <em style="font-size: 0.9rem; color: #ccc;">${msg.date}</em>
+        <p style="margin: 8px 0 0;">${msg.text}</p>
+      </div>
+    `).join('');
+  }
+
+  function postForumMessage() {
+    const name = document.getElementById("forum-name").value.trim();
+    const text = document.getElementById("forum-message").value.trim();
+    if (!name || !text) return alert("Completează toate câmpurile!");
+
+    const msg = {
+      name,
+      text,
+      date: new Date().toLocaleString("ro-RO")
+    };
+
+    const messages = JSON.parse(localStorage.getItem("festi_forum")) || [];
+    messages.unshift(msg);
+    localStorage.setItem("festi_forum", JSON.stringify(messages));
+    document.getElementById("forum-name").value = "";
+    document.getElementById("forum-message").value = "";
+    loadForumMessages();
+  }
+
+  window.onload = function () {
+    if (typeof returnHome === "function") returnHome();
+    showRandomTrivia?.();
+    loadForumMessages();
+  };
+</script>
+
+
+<script>
+  function sendContactMessage(event) {
+    event.preventDefault();
+    const name = document.getElementById("contact-name").value.trim();
+    const email = document.getElementById("contact-email").value.trim();
+    const message = document.getElementById("contact-message").value.trim();
+    if (!name || !email || !message) return alert("Completează toate câmpurile!");
+    alert("Mulțumim, " + name + "! Mesajul tău a fost trimis.");
+    document.getElementById("contact-name").value = "";
+    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-message").value = "";
+  }
+</script>
+
+</body>
+</html>

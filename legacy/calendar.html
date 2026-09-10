@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar Festivaluri - FESTI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1503803508152-7790ae3cb125') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+      margin-right: 20px;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #a259ff;
+    }
+    nav {
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      flex: 1;
+      text-align: center;
+    }
+    nav ul li a {
+      display: block;
+      padding: 20px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      background-color: #a259ff;
+      color: black;
+    }
+    .content {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 2.5rem;
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+      background-color: #6a1fb5;
+      padding: 15px 20px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+    .month {
+      background-color: #6a1fb5;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      color: white;
+    }
+    .month h3 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    .month ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .month ul li {
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: white;
+    }
+    footer {
+      padding: 30px 20px;
+      text-align: center;
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="FESTI Logo">
+    <h1>FESTI - Calendar</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Acasă</a></li>
+      <li><a href="festivaluri.html">Festivaluri</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="forum.html">Forum</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <h2>Calendarul Festivalurilor</h2>
+    <div class="calendar">
+      <div class="month"><h3>Ianuarie</h3><ul><li style='color: #777;'>– Niciun festival adăugat încă –</li></ul></div>
+      <div class="month"><h3>Februarie</h3><ul><li style='color: #777;'>– Niciun festival adăugat încă –</li></ul></div>
+      <div class="month"><h3>Martie</h3><ul><li style='color: #777;'>– Niciun festival adăugat încă –</li></ul></div>
+      <div class="month"><h3>Aprilie</h3><ul><li style='color: #777;'>– Niciun festival adăugat încă –</li></ul></div>
+      <div class="month"><h3>Mai</h3><ul><li>🎵 <a href='https://www.primaverasound.com/' target='_blank' style='color:white; text-decoration:underline'>Primavera Sound</a></li></ul></div>
+      <div class="month"><h3>Iunie</h3><ul><li>🎵 <a href='https://www.rockenseine.com/' target='_blank' style='color:white; text-decoration:underline'>Rock en Seine</a></li><li>🎵 <a href='https://meadowsinthomountains.com/' target='_blank' style='color:white; text-decoration:underline'>Meadows</a></li><li>🎵 <a href='https://sunscape.live/' target='_blank' style='color:white; text-decoration:underline'>Sunscape</a></li><li>🎵 <a href='https://www.dimensionsfestival.com/' target='_blank' style='color:white; text-decoration:underline'>Dimensions</a></li></ul></div>
+      <div class="month"><h3>Iulie</h3><ul><li>🎵 <a href='https://www.tomorrowland.com/' target='_blank' style='color:white; text-decoration:underline'>Tomorrowland</a></li><li>🎵 <a href='https://electriccastle.ro/' target='_blank' style='color:white; text-decoration:underline'>Electric Castle</a></li><li>🎵 <a href='https://www.jazzinthepark.ro/' target='_blank' style='color:white; text-decoration:underline'>Jazz in the Park</a></li><li>🎵 <a href='https://boomfestival.org/' target='_blank' style='color:white; text-decoration:underline'>Boom</a></li><li>🎵 <a href='https://www.fusion-festival.de/' target='_blank' style='color:white; text-decoration:underline'>Fusion</a></li><li>🎵 <a href='https://loveinternationalfestival.com/' target='_blank' style='color:white; text-decoration:underline'>Love International</a></li></ul></div>
+      <div class="month"><h3>August</h3><ul><li>🎵 <a href='https://untold.com/' target='_blank' style='color:white; text-decoration:underline'>Untold</a></li><li>🎵 <a href='https://szigetfestival.com/' target='_blank' style='color:white; text-decoration:underline'>Sziget</a></li><li>🎵 <a href='https://opener.pl/' target='_blank' style='color:white; text-decoration:underline'>Open'er</a></li><li>🎵 <a href='https://www.eurockeennes.fr/' target='_blank' style='color:white; text-decoration:underline'>Les Eurockéennes</a></li><li>🎵 <a href='https://www.mysteryland.nl/' target='_blank' style='color:white; text-decoration:underline'>Mysteryland</a></li><li>🎵 <a href='https://www.dekmantelfestival.com/' target='_blank' style='color:white; text-decoration:underline'>Dekmantel</a></li><li>🎵 <a href='https://www.balatonsound.com/' target='_blank' style='color:white; text-decoration:underline'>Balaton Sound</a></li></ul></div>
+      <div class="month"><h3>Septembrie</h3><ul><li>🎵 <a href='https://www.nosalive.com/' target='_blank' style='color:white; text-decoration:underline'>NOS Alive</a></li><li>🎵 <a href='https://www.exitfest.org/' target='_blank' style='color:white; text-decoration:underline'>EXIT</a></li></ul></div>
+      <div class="month"><h3>Octombrie</h3><ul><li style='color: #777;'>– Niciun festival adăugat încă –</li></ul></div>
+      <div class="month"><h3>Noiembrie</h3><ul><li style='color: #777;'>– Niciun festival adăugat încă –</li></ul></div>
+      <div class="month"><h3>Decembrie</h3><ul><li style='color: #777;'>– Niciun festival adăugat încă –</li></ul></div>
+    </div>
+  </div>
+  <footer>
+    <p style="margin: 0;">🌍 Creatori: <strong>Staicu Aida</strong> & <strong>Tecu Alessia</strong> • © FESTI</p>
+  </footer>
+</body>
+</html>

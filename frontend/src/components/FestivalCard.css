@@ -1,0 +1,65 @@
+.festival-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #1a1a1a;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(162, 89, 255, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.festival-card:hover {
+  transform: scale(1.02);
+}
+
+.festival-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.festival-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.festival-info {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.festival-info h4 {
+  margin: 4px 0 6px;
+  color: var(--color-accent-light);
+  font-size: 1.25rem;
+  text-shadow: 1px 1px 4px black;
+}
+
+.festival-info p {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.festival-description {
+  color: #e6e0f5 !important;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  text-shadow: 1px 1px 4px black;
+  padding: 4px;
+  line-height: 1;
+}

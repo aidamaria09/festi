@@ -1,0 +1,72 @@
+.forum-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.bubble {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  padding: 10px 15px;
+  max-width: 80%;
+  word-break: break-word;
+}
+
+.bubble .meta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 5px;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-area input,
+.input-area textarea {
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.input-area button {
+  align-self: flex-start;
+}
+
+.forum-error {
+  color: #ff9999;
+}

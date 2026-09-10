@@ -1,0 +1,78 @@
+.hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero h2 {
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.intro-desc {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 700px;
+  margin: 10px auto 40px;
+}
+
+.hero small {
+  display: block;
+  margin-top: 10px;
+  color: var(--color-text-muted);
+}
+
+.quiz-wrap {
+  padding: 60px 0;
+}
+
+.top-festivals {
+  padding: 60px 20px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.festival-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.load-error {
+  text-align: center;
+  color: #ff9999;
+  margin-bottom: 20px;
+}
+
+.map-testimonials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: flex-start;
+  padding: 60px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.map-column {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.map-column h2 {
+  font-size: 2.2rem;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+}
+
+.map-column p {
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.map-testimonials .testimonials {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}

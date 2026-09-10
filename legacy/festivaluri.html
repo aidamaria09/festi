@@ -1,0 +1,590 @@
+
+<!DOCTYPE html>
+
+<html lang="ro">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Festivaluri - FESTI</title>
+<style>
+    
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1503803508152-7790ae3cb125?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+    }
+    header img { height: 70px; margin-right: 20px; }
+    header h1 { font-size: 2.5rem; margin: 0; color: #a259ff; }
+    nav { width: 100%; background-color: rgba(0, 0, 0, 0.85); }
+    nav ul { display: flex; margin: 0; padding: 0; list-style: none; }
+    nav ul li { flex: 1; text-align: center; }
+    nav ul li a {
+      display: block;
+      padding: 20px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    nav ul li a:hover { background-color: #a259ff; color: black; }
+    .content {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+   .content h2 { font-size: 2.8rem; color: white; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); }
+    .intro-desc {
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-top: 10px;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .start-btn, .ai-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .start-btn { background-color: #a259ff; color: white; box-shadow: 0 0 10px #a259ff; }
+    .start-btn:hover { background-color: white; color: #1a1a1a; }
+    .ai-btn { background-color: #ffffff; color: #a259ff; border: 2px solid #a259ff; }
+    .ai-btn:hover { background-color: #a259ff; color: white; }
+    small { display: block; margin-top: 10px; color: #ccc; }
+    .top-festivals {
+      padding: 60px 20px;
+      background-color: rgba(0, 0, 0, 0.75);
+      text-align: center;
+    }
+    .top-festivals h3 { font-size: 2rem; color: #a259ff; margin-bottom: 40px; }
+    .festival-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .festival-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(162, 89, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .festival-card:hover { transform: scale(1.03); }
+    .festival-card img { width: 100%; height: 180px; object-fit: cover; }
+    .festival-info { padding: 15px; }
+    .festival-info h4 { margin: 10px 0 5px; color: #a259ff; font-size: 1.3rem; }
+    .festival-info p { font-size: 0.95rem; color: #ccc; }
+    .testimonials {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .testimonials h3 {
+      font-size: 2rem;
+      color: #a259ff;
+      margin-bottom: 30px;
+    }
+    .testimonials blockquote {
+      font-style: italic;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 10px auto;
+      color: #ccc;
+      border-left: 4px solid #a259ff;
+      padding-left: 15px;
+    }
+  .testimonials::-webkit-scrollbar { display: none; }
+
+
+#quiz-section {
+  padding: 60px 20px;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-container {
+  background-color: transparent;
+  padding: 20px;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.quiz-question {
+  font-size: 2rem;
+  color: #a259ff;
+  text-shadow: 1px 1px 6px black;
+}
+
+.quiz-container button {
+  width: auto;
+  min-width: 240px;
+  display: block;
+  margin: 10px auto;
+  font-size: 1.1rem;
+}
+
+.festival-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.reset-btn {
+  margin-top: 20px;
+  background-color: #ff4c4c;
+  color: white;
+  width: auto;
+  padding: 12px 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.quiz-container button {
+  background-color: #a259ff;
+  color: white;
+  box-shadow: 0 0 10px #a259ff;
+  border: none;
+}
+
+.quiz-container button:hover {
+  background-color: white;
+  color: #1a1a1a;
+}
+
+.festival-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: white;
+    background-color: #a259ff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(162, 89, 255, 0.4);
+    transition: transform 0.3s ease;
+    text-align: center;
+    justify-content: space-between;
+    height: 100%; /* Adaugă această linie */
+}
+
+.festival-card img {
+    width: 100%;
+    height: 180px; /* Înălțime fixă pentru toate imaginile */
+    object-fit: cover;
+}
+
+.festival-info {
+    padding: 15px;
+    flex-grow: 1; /* Forțează festival-info să ocupe spațiul rămas */
+}
+
+
+
+.quiz-question {
+  text-align: center;
+}
+
+.return-btn {
+  background-color: #ffffff;
+  color: #a259ff;
+  border: 2px solid #a259ff;
+  padding: 12px 30px;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.return-btn:hover {
+  background-color: #a259ff;
+  color: white;
+}
+
+
+button {
+  border-radius: 12px !important;
+}
+
+
+.festival-info h4 {
+  color: #a259ff !important;
+}
+
+
+.festival-card h4, .festival-info h4 {
+  color: #a259ff !important;
+  text-shadow: 1px 1px 4px black;
+}
+
+
+.fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+  z-index: 2;
+}
+.fav-btn.favorit {
+  color: red;
+}
+.festival-card {
+  position: relative;
+}
+
+
+.festival-card h4, .festival-info h4 {
+  color: white !important;
+  text-shadow: 1px 1px 4px black;
+}
+
+  
+.festival-info a {
+  color: white;
+  text-decoration: none;
+}
+.festival-info a:hover {
+  text-decoration: underline;
+  color: #ddd;
+}
+</style>
+</head>
+<body>
+<header>
+<img alt="FESTI Logo" src="logo.png">
+<h1>FESTI</h1>
+</header>
+<nav>
+<ul>
+<li><a href="index.html">Acasă</a></li>
+<li><a href="festivaluri.html">Festivaluri</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="forum.html">Forum</a></li>
+</ul>
+</nav>
+<div class="content">
+<h2>Joacă-te și alege bucuria din vara asta!</h2>
+<div class="filters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 30px;">
+<select id="filter-genre" onchange="filterFestivals()" style="padding: 10px 20px; border-radius: 10px; background-color: #a259ff; color: white;">
+<option value="">Gen muzical</option>
+<option value="EDM">EDM</option>
+<option value="Rock">Rock</option>
+<option value="Indie">Indie</option>
+<option value="Jazz">Jazz</option>
+<option value="Techno">Techno</option>
+<option value="Pop">Pop</option>
+</select>
+<select id="filter-vibe" onchange="filterFestivals()" style="padding: 10px 20px; border-radius: 10px; background-color: #a259ff; color: white;">
+<option value="">Vibe</option>
+<option value="Urban">Urban</option>
+<option value="Natură">Natură</option>
+<option value="Plajă">Plajă</option>
+<option value="Castel">Castel</option>
+<option value="Munte">Munte</option>
+</select>
+<select id="filter-size" onchange="filterFestivals()" style="padding: 10px 20px; border-radius: 10px; background-color: #a259ff; color: white;">
+<option value="">Dimensiune</option>
+<option value="Intim">Intim</option>
+<option value="Mediu">Mediu</option>
+<option value="Uriaș">Uriaș</option>
+</select>
+</div>
+<div class="festival-grid" id="festival-grid" style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; max-width: 1200px; margin-left: auto; margin-right: auto;">
+<div class="festival-card" data-genre="EDM" data-size="Uriaș" data-vibe="Plajă">
+<img alt="Tomorrowland" src="https://djmag.com/sites/default/files/styles/djm_23_961x540_jpg/public/2023-08/tomorrowland-top-100-festivals_0.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Tomorrowland', 'https://www.tomorrowland.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.tomorrowland.com/" rel="noopener noreferrer" target="_blank">Tomorrowland</a></h4>
+<p>EDM • Plajă • Uriaș</p>
+</div>
+</div>
+<div class="festival-card" data-genre="Rock" data-size="Mediu" data-vibe="Urban">
+<img alt="NOS Alive" src="https://znaki.fm/static/content/thumbs/1600x900/f/f9/qddk2j---c16x9x50px50p--ae5f52feb38a61495122075e9dda7f9f.jpeg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'NOS Alive', 'https://www.nosalive.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.nosalive.com/" rel="noopener noreferrer" target="_blank">NOS Alive</a></h4>
+<p>Rock • Urban • Mediu</p>
+</div>
+</div>
+<div class="festival-card" data-genre="EDM" data-size="Uriaș" data-vibe="Castel">
+<img alt="EXIT" src="https://www.clashmusic.com/wp-content/uploads/2024/12/exit-festival.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'EXIT', 'https://www.exitfest.org/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.exitfest.org/" rel="noopener noreferrer" target="_blank">EXIT</a></h4>
+<p>EDM • Castel • Uriaș</p>
+</div>
+</div>
+<div class="festival-card" data-genre="Pop" data-size="Uriaș" data-vibe="Plajă">
+<img alt="Open'er" src="https://rytmy.pl/wp-content/uploads/bfi_thumb/Opener_1-e1554471597576-oa8vhujhxl9t22qno95na5fo516hgsqs20d494fxio.jpg"/>
+<button ')\"="" 'https:="" 'open'er',="" class="fav-btn" onclick="toggleFavorite(this, 'Open'er', 'https://opener.pl/')" opener.pl="" this,="">🤍</button>
+<div class="festival-info">
+<h4><a href="https://opener.pl/" rel="noopener noreferrer" target="_blank">Open'er</a></h4>
+<p>Pop • Plajă • Uriaș</p>
+</div>
+</div>
+<div class="festival-card" data-genre="Rock" data-size="Mediu" data-vibe="Urban">
+<img alt="Rock en Seine" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/6e/11/3d/festival-rock-en-seine.jpg?w=1200&amp;h=1200&amp;s=1"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Rock en Seine', 'https://www.rockenseine.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.rockenseine.com/" rel="noopener noreferrer" target="_blank">Rock en Seine</a></h4>
+<p>Rock • Urban • Mediu</p>
+</div>
+</div>
+<div class="festival-card" data-genre="Techno" data-size="Mediu" data-vibe="Natură">
+<img alt="Dekmantel" src="https://mixmag.net/assets/uploads/images/_fullX2/Atmosphere-2-Dekmantel-Ten-please-credit-Tim-Buiting.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Dekmantel', 'https://www.dekmantelfestival.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.dekmantelfestival.com/" rel="noopener noreferrer" target="_blank">Dekmantel</a></h4>
+<p>Techno • Natură • Mediu</p>
+</div>
+</div>
+<div class="festival-card" data-genre="EDM" data-size="Mediu" data-vibe="Natură">
+<img alt="Mysteryland" src="https://visithaarlemmermeer.nl/sites/default/files/visual_image_teaser/Mysteryland2.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Mysteryland', 'https://www.mysteryland.nl/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.mysteryland.nl/" rel="noopener noreferrer" target="_blank">Mysteryland</a></h4>
+<p>EDM • Natură • Mediu</p>
+</div>
+</div>
+<div class="festival-card" data-genre="EDM" data-size="Uriaș" data-vibe="Plajă">
+<img alt="Balaton Sound" src="https://i.ytimg.com/vi/TtWnvH2oMfA/maxresdefault.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Balaton Sound', 'https://www.balatonsound.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.balatonsound.com/" rel="noopener noreferrer" target="_blank">Balaton Sound</a></h4>
+<p>EDM • Plajă • Uriaș</p>
+</div>
+</div>
+<div class="festival-card" data-genre="Rock" data-size="Mediu" data-vibe="Natură">
+<img alt="Les Eurockéennes" src="https://www.eurockeennes.fr/wp-content/uploads/2023/12/eurocks2019-ambiance-bricerobert-41-scaled.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Les Eurockéennes', 'https://www.eurockeennes.fr/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.eurockeennes.fr/" rel="noopener noreferrer" target="_blank">Les Eurockéennes</a></h4>
+<p>Rock • Natură • Mediu</p>
+</div>
+</div><div class="festival-card" data-genre="Techno" data-size="Intim" data-vibe="Plajă">
+<img alt="Sunscape" src="https://www.noa-zrce.com/data/public/eventi/sunscape-sa-by-edge-84.jpeg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Sunscape', 'https://sunscape.live/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://sunscape.live/" rel="noopener noreferrer" target="_blank">Sunscape</a></h4>
+<p>Techno • Plajă • Intim</p>
+</div>
+</div><div class="festival-card" data-genre="Mix" data-size="Uriaș" data-vibe="Urban">
+<img alt="Sziget" src="https://szigetfestival.com/wp-content/uploads/2024/03/DJI_20240810214150_0325_D-scaled.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Sziget', 'https://szigetfestival.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://szigetfestival.com/" rel="noopener noreferrer" target="_blank">Sziget</a></h4>
+<p>Mix • Urban • Uriaș</p>
+</div>
+</div><div class="festival-card" data-genre="EDM" data-size="Uriaș" data-vibe="Urban">
+<img alt="Untold" src="https://viacluj.tv/wp-content/uploads/2022/08/untold-3.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Untold', 'https://untold.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://untold.com/" rel="noopener noreferrer" target="_blank">Untold</a></h4>
+<p>EDM • Urban • Uriaș</p>
+</div>
+</div><div class="festival-card" data-genre="Techno" data-size="Mediu" data-vibe="Natură">
+<img alt="Boom" src="https://tribalreunion.com/wpfiles/wp-content/uploads/2020/05/Boom-festival-6608.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Boom', 'https://boomfestival.org/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://boomfestival.org/" rel="noopener noreferrer" target="_blank">Boom</a></h4>
+<p>Techno • Natură • Mediu</p>
+</div>
+</div><div class="festival-card" data-genre="Indie" data-size="Mediu" data-vibe="Urban">
+<img alt="Primavera Sound" src="https://static01.nyt.com/images/2014/06/01/arts/music/20140601PRIMA-slide-LEBV/20140601PRIMA-slide-LEBV-superJumbo.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Primavera Sound', 'https://www.primaverasound.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.primaverasound.com/" rel="noopener noreferrer" target="_blank">Primavera Sound</a></h4>
+<p>Indie • Urban • Mediu</p>
+</div>
+</div><div class="festival-card" data-genre="EDM" data-size="Mediu" data-vibe="Castel">
+<img alt="Electric Castle" src="https://media.electriccastle.ro/stories/article/ECMag_Choosing_the_right_festival_thumbnail.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Electric Castle', 'https://electriccastle.ro/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://electriccastle.ro/" rel="noopener noreferrer" target="_blank">Electric Castle</a></h4>
+<p>EDM • Castel • Mediu</p>
+</div>
+</div><div class="festival-card" data-genre="Techno" data-size="Mediu" data-vibe="Plajă">
+<img alt="Dimensions" src="https://www.visit-croatia.co.uk/wp-content/uploads/2022/02/210904_DIMENSIONS_2021_JakeDavis_@jakephilipdaviis_@khromacollective-3537.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Dimensions', 'https://www.dimensionsfestival.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.dimensionsfestival.com/" rel="noopener noreferrer" target="_blank">Dimensions</a></h4>
+<p>Techno • Plajă • Mediu</p>
+</div>
+</div><div class="festival-card" data-genre="Jazz" data-size="Mediu" data-vibe="Natură">
+<img alt="Jazz in the Park" src="https://clujwebstory.ro/images/2024/06/Jazz-in-the-Park-Competition-2.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Jazz in the Park', 'https://www.jazzinthepark.ro/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.jazzinthepark.ro/" rel="noopener noreferrer" target="_blank">Jazz in the Park</a></h4>
+<p>Jazz • Natură • Mediu</p>
+</div>
+</div><div class="festival-card" data-genre="Rock" data-size="Intim" data-vibe="Munte">
+<img alt="Fusion" src="https://undergroundsound.eu/wp-content/uploads/2024/01/Fusion-6-by-Montecruz-Foto.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Fusion', 'https://www.fusion-festival.de/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://www.fusion-festival.de/" rel="noopener noreferrer" target="_blank">Fusion</a></h4>
+<p>Rock • Munte • Intim</p>
+</div>
+</div><div class="festival-card" data-genre="Indie" data-size="Intim" data-vibe="Munte">
+<img alt="Meadows" src="https://i0.wp.com/liveforlivemusic.com/wp-content/uploads/2018/08/the-meadows-day-one-Stages-and-people-9.15.17-chad-anderson-photography-8479-1200x630.jpg?resize=740%2C390&amp;ssl=1"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Meadows', 'https://meadowsinthomountains.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://meadowsinthomountains.com/" rel="noopener noreferrer" target="_blank">Meadows</a></h4>
+<p>Indie • Munte • Intim</p>
+</div>
+</div><div class="festival-card" data-genre="Indie" data-size="Intim" data-vibe="Plajă">
+<img alt="Love International" src="https://media.timeout.com/images/103073017/image.jpg"/>
+<button class="fav-btn" onclick="toggleFavorite(this, 'Love International', 'https://loveinternationalfestival.com/')">🤍</button>
+<div class="festival-info">
+<h4><a href="https://loveinternationalfestival.com/" rel="noopener noreferrer" target="_blank">Love International</a></h4>
+<p>Indie • Plajă • Intim</p>
+</div>
+</div></div>
+</div>
+<footer style="padding: 30px 20px; text-align: center; background-color: rgba(0,0,0,0.8); color: #ccc; font-size: 1rem;">
+<p style="margin: 0;">🌍 Creatori: <strong>Staicu Aida</strong> &amp; <strong>Tecu Alessia</strong> • © FESTI</p>
+</footer>
+<script>
+  function loadForumMessages() {
+    const container = document.getElementById("forum-messages");
+    const messages = JSON.parse(localStorage.getItem("festi_forum")) || [];
+    container.innerHTML = messages.map(msg => `
+      <div style="background: rgba(255,255,255,0.1); padding: 15px; margin-bottom: 10px; border-radius: 10px;">
+        <strong>${msg.name}</strong> <em style="font-size: 0.9rem; color: #ccc;">${msg.date}</em>
+        <p style="margin: 8px 0 0;">${msg.text}</p>
+      </div>
+    `).join('');
+  }
+
+  function postForumMessage() {
+    const name = document.getElementById("forum-name").value.trim();
+    const text = document.getElementById("forum-message").value.trim();
+    if (!name || !text) return alert("Completează toate câmpurile!");
+
+    const msg = {
+      name,
+      text,
+      date: new Date().toLocaleString("ro-RO")
+    };
+
+    const messages = JSON.parse(localStorage.getItem("festi_forum")) || [];
+    messages.unshift(msg);
+    localStorage.setItem("festi_forum", JSON.stringify(messages));
+    document.getElementById("forum-name").value = "";
+    document.getElementById("forum-message").value = "";
+    loadForumMessages();
+  }
+
+  window.onload = function () {
+    if (typeof returnHome === "function") returnHome();
+    showRandomTrivia?.();
+    loadForumMessages();
+  };
+</script>
+<script>
+  function sendContactMessage(event) {
+    event.preventDefault();
+    const name = document.getElementById("contact-name").value.trim();
+    const email = document.getElementById("contact-email").value.trim();
+    const message = document.getElementById("contact-message").value.trim();
+    if (!name || !email || !message) return alert("Completează toate câmpurile!");
+    alert("Mulțumim, " + name + "! Mesajul tău a fost trimis.");
+    document.getElementById("contact-name").value = "";
+    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-message").value = "";
+  }
+</script>
+<script>
+  function filterFestivals() {
+    const genre = document.getElementById("filter-genre").value;
+    const vibe = document.getElementById("filter-vibe").value;
+    const size = document.getElementById("filter-size").value;
+    document.querySelectorAll(".festival-card").forEach(card => {
+      const match = (!genre || card.dataset.genre === genre) &&
+                    (!vibe || card.dataset.vibe === vibe) &&
+                    (!size || card.dataset.size === size);
+      card.style.display = match ? "block" : "none";
+    });
+  }
+</script>
+
+<script>
+function toggleFavorite(btn, name, link) {
+  let favorites = JSON.parse(localStorage.getItem("festi_favorites") || "[]");
+  const index = favorites.findIndex(f => f.name === name);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    btn.innerHTML = "🤍";
+    btn.classList.remove("favorit");
+  } else {
+    favorites.push({ name, link });
+    btn.innerHTML = "❤️";
+    btn.classList.add("favorit");
+  }
+  localStorage.setItem("festi_favorites", JSON.stringify(favorites));
+}
+
+function restoreFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("festi_favorites") || "[]");
+  document.querySelectorAll(".festival-card").forEach(card => {
+    const name = card.querySelector("h4")?.innerText;
+    const btn = card.querySelector(".fav-btn");
+    if (favorites.some(f => f.name === name)) {
+      if (btn) {
+        btn.classList.add("favorit");
+        btn.innerHTML = "❤️";
+      }
+    }
+  });
+}
+
+window.addEventListener("load", restoreFavorites);
+</script></body>
+</html>
+
