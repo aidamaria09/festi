@@ -16,6 +16,8 @@ export interface Festival {
   lng: number;
   description: string;
   featured: boolean;
+  airportCode: string; // nearest major IATA airport code, for flight search
+  cityCode: string; // Amadeus city code, for hotel search
 }
 
 export interface ForumMessage {

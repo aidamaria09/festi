@@ -29,7 +29,9 @@ db.exec(`
     lat REAL NOT NULL,
     lng REAL NOT NULL,
     description TEXT NOT NULL,
-    featured INTEGER NOT NULL DEFAULT 0
+    featured INTEGER NOT NULL DEFAULT 0,
+    airport_code TEXT NOT NULL,
+    city_code TEXT NOT NULL
   );
 
   CREATE TABLE IF NOT EXISTS forum_messages (
@@ -55,8 +57,8 @@ function seedFestivals(): void {
   if (count > 0) return;
 
   const insert = db.prepare(`
-    INSERT INTO festivals (id, name, country, genre, vibe, size, month, url, image, lat, lng, description, featured)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO festivals (id, name, country, genre, vibe, size, month, url, image, lat, lng, description, featured, airport_code, city_code)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   for (const f of festivalsSeed) {
@@ -73,7 +75,9 @@ function seedFestivals(): void {
       f.lat,
       f.lng,
       f.description,
-      f.featured ? 1 : 0
+      f.featured ? 1 : 0,
+      f.airportCode,
+      f.cityCode
     );
   }
 }

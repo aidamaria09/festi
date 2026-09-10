@@ -17,6 +17,8 @@ function makeFestival(overrides: Partial<Festival>): Festival {
     lng: 0,
     description: "",
     featured: false,
+    airportCode: "XXX",
+    cityCode: "XXX",
     ...overrides,
   };
 }

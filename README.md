@@ -12,6 +12,7 @@ This started as a school project (originally in Romanian, plain HTML/CSS/JS). Th
 - **Calendar** — festivals grouped by month, generated from the same dataset that powers the rest of the app.
 - **Forum** — a simple message board backed by the API and a database.
 - **Contact form** — sends a message to the backend, which stores it.
+- **Trip planner** — on each festival's detail page, search real flight and hotel prices (via the [Amadeus for Developers](https://developers.amadeus.com) API) from a departure airport to the festival's nearest airport, with a one-click deep link out to Skyscanner or Booking.com to complete the booking.
 
 ## Tech stack
 
@@ -50,14 +51,16 @@ cd frontend && npm install && npm run dev   # app on http://localhost:5173
 
 The frontend reads the API URL from `VITE_API_URL` (see `frontend/.env.example`); it defaults to `http://localhost:4000`.
 
+To get live flight/hotel prices in the trip planner, sign up for a free account at [developers.amadeus.com](https://developers.amadeus.com), create an app under the "test" environment, and put the API key/secret in `backend/.env` as `AMADEUS_CLIENT_ID` / `AMADEUS_CLIENT_SECRET` (see `backend/.env.example`). Without a key, the planner still works — it shows a note and falls back to a Skyscanner/Booking.com search link.
+
 ## Testing
 
 ```bash
 npm test   # runs backend and frontend test suites
 ```
 
-- Backend: API integration tests (Supertest) covering festival filtering, the quiz-matching endpoint, and forum validation.
-- Frontend: unit tests for the calendar grouping logic and the favorites hook, plus a component test asserting that user-supplied content (e.g. a forum message) is rendered as text, never as HTML.
+- Backend: API integration tests (Supertest) covering festival filtering, the quiz-matching endpoint, forum validation, and the travel routes (including a mocked Amadeus OAuth + flight-search flow, so the suite never needs real API credentials).
+- Frontend: unit tests for the calendar grouping logic, the trip-date helper, and the favorites hook, plus a component test asserting that user-supplied content (e.g. a forum message) is rendered as text, never as HTML.
 
 ## API
 
@@ -69,6 +72,8 @@ npm test   # runs backend and frontend test suites
 | GET | `/api/forum` | List forum messages, newest first |
 | POST | `/api/forum` | Body `{ name, message }` → posts a message |
 | POST | `/api/contact` | Body `{ name, email, message }` → stores a contact request |
+| GET | `/api/travel/flights` | Query `festivalId, origin, departureDate, returnDate?, adults?` → flight offers (Amadeus) + a Skyscanner search link |
+| GET | `/api/travel/hotels` | Query `festivalId, checkInDate, checkOutDate, adults?` → hotel offers (Amadeus) + a Booking.com search link |
 
 ## What changed from the original
 
@@ -85,6 +90,9 @@ The original was four Romanian HTML pages that each duplicated the same ~300 lin
 - Add authentication so favorites sync across devices instead of living in `localStorage`.
 - Swap SQLite for a hosted Postgres instance for production durability.
 - Let organizers submit new festivals through an admin view instead of editing the seed file.
+- Cache Amadeus responses (same route/query) for a few minutes to stay well under the free-tier rate limit.
+
+**Note on Skyscanner/Booking.com:** neither offers a self-serve public API — both require an approved business partnership. The trip planner uses [Amadeus for Developers](https://developers.amadeus.com) for real flight/hotel price data (a genuinely self-serve, free-tier API used by real travel products) and links out to Skyscanner/Booking.com's own search pages to complete a booking, rather than pretending to integrate with APIs that aren't actually open.
 
 ## Credits
 

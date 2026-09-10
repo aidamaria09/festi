@@ -1,28 +1,8 @@
 import { Router } from "express";
 import { db } from "../db/index.js";
-import type { Festival } from "../types.js";
+import { toFestival, type FestivalRow } from "../db/festivalRow.js";
 
 export const quizRouter = Router();
-
-interface FestivalRow {
-  id: string;
-  name: string;
-  country: string;
-  genre: string;
-  vibe: string;
-  size: string;
-  month: number;
-  url: string;
-  image: string;
-  lat: number;
-  lng: number;
-  description: string;
-  featured: number;
-}
-
-function toFestival(row: FestivalRow): Festival {
-  return { ...row, featured: Boolean(row.featured) } as Festival;
-}
 
 quizRouter.post("/match", (req, res) => {
   const { genre, vibe, size } = req.body ?? {};

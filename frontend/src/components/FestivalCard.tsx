@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Festival } from "../types";
 import "./FestivalCard.css";
 
@@ -30,6 +31,9 @@ export function FestivalCard({ festival, isFavorite, onToggleFavorite }: Festiva
           {festival.description && <p className="festival-description">{festival.description}</p>}
         </div>
       </a>
+      <Link to={`/festivals/${festival.id}`} className="plan-trip-link">
+        ✈️ Plan your trip
+      </Link>
     </div>
   );
 }

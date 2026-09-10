@@ -16,6 +16,8 @@ export interface Festival {
   lng: number;
   description: string;
   featured: boolean;
+  airportCode: string;
+  cityCode: string;
 }
 
 export interface ForumMessage {
@@ -23,4 +25,29 @@ export interface ForumMessage {
   name: string;
   message: string;
   createdAt: string;
+}
+
+export interface FlightOffer {
+  id: string;
+  price: number;
+  currency: string;
+  airline: string;
+  stops: number;
+  departureTime: string;
+  arrivalTime: string;
+  durationMinutes: number;
+}
+
+export interface HotelOffer {
+  id: string;
+  name: string;
+  price: number;
+  currency: string;
+  ratingStars: number | null;
+}
+
+export interface TravelSearchResult<T> {
+  configured: boolean;
+  offers: T[];
+  bookingSearchUrl: string;
 }

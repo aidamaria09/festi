@@ -16,6 +16,8 @@ export const festivalsSeed: Festival[] = [
     lng: 4.403,
     description: "The most spectacular electronic music festival in the world.",
     featured: true,
+    airportCode: "BRU",
+    cityCode: "BRU",
   },
   {
     id: "sziget",
@@ -32,6 +34,8 @@ export const festivalsSeed: Festival[] = [
     lng: 19.046,
     description: "An island of freedom, art and music for hundreds of thousands of people.",
     featured: true,
+    airportCode: "BUD",
+    cityCode: "BUD",
   },
   {
     id: "untold",
@@ -47,6 +51,8 @@ export const festivalsSeed: Festival[] = [
     lng: 23.59,
     description: "Magic, lights and energy in a massive EDM and pop festival.",
     featured: true,
+    airportCode: "CLJ",
+    cityCode: "CLJ",
   },
   {
     id: "boom",
@@ -62,6 +68,8 @@ export const festivalsSeed: Festival[] = [
     lng: -7.49,
     description: "An alternative experience blending techno, art and nature.",
     featured: true,
+    airportCode: "LIS",
+    cityCode: "LIS",
   },
   {
     id: "primavera-sound",
@@ -78,6 +86,8 @@ export const festivalsSeed: Festival[] = [
     lng: 2.17,
     description: "An urban mix of indie, electronic music and contemporary art.",
     featured: true,
+    airportCode: "BCN",
+    cityCode: "BCN",
   },
   {
     id: "electric-castle",
@@ -94,6 +104,8 @@ export const festivalsSeed: Festival[] = [
     lng: 23.74,
     description: "Music, technology and a magical atmosphere inside a Transylvanian castle.",
     featured: true,
+    airportCode: "CLJ",
+    cityCode: "CLJ",
   },
   {
     id: "dimensions",
@@ -110,6 +122,8 @@ export const festivalsSeed: Festival[] = [
     lng: 13.85,
     description: "Underground techno by the sea, set in a stunning industrial backdrop.",
     featured: true,
+    airportCode: "PUY",
+    cityCode: "PUY",
   },
   {
     id: "jazz-in-the-park",
@@ -125,6 +139,8 @@ export const festivalsSeed: Festival[] = [
     lng: 23.6,
     description: "Jazz, chill vibes and community in a park full of atmosphere and relaxation.",
     featured: true,
+    airportCode: "CLJ",
+    cityCode: "CLJ",
   },
   {
     id: "nos-alive",
@@ -141,6 +157,8 @@ export const festivalsSeed: Festival[] = [
     lng: -9.3,
     description: "A riverside stage lineup mixing rock headliners with pop and indie acts.",
     featured: false,
+    airportCode: "LIS",
+    cityCode: "LIS",
   },
   {
     id: "exit",
@@ -156,6 +174,8 @@ export const festivalsSeed: Festival[] = [
     lng: 19.8335,
     description: "Held inside an 18th-century fortress overlooking the Danube.",
     featured: false,
+    airportCode: "BEG",
+    cityCode: "BEG",
   },
   {
     id: "opener",
@@ -172,6 +192,8 @@ export const festivalsSeed: Festival[] = [
     lng: 18.5305,
     description: "A Baltic coast festival known for booking huge global headliners.",
     featured: false,
+    airportCode: "GDN",
+    cityCode: "GDN",
   },
   {
     id: "rock-en-seine",
@@ -188,6 +210,8 @@ export const festivalsSeed: Festival[] = [
     lng: 2.2148,
     description: "A rock and alternative lineup in a park on the edge of Paris.",
     featured: false,
+    airportCode: "CDG",
+    cityCode: "PAR",
   },
   {
     id: "dekmantel",
@@ -204,6 +228,8 @@ export const festivalsSeed: Festival[] = [
     lng: 4.9041,
     description: "A woodland techno and house festival curated by DJs, for DJs.",
     featured: false,
+    airportCode: "AMS",
+    cityCode: "AMS",
   },
   {
     id: "mysteryland",
@@ -219,6 +245,8 @@ export const festivalsSeed: Festival[] = [
     lng: 4.68,
     description: "One of the world's oldest electronic music festivals, built around bold art installations.",
     featured: false,
+    airportCode: "AMS",
+    cityCode: "AMS",
   },
   {
     id: "balaton-sound",
@@ -234,6 +262,8 @@ export const festivalsSeed: Festival[] = [
     lng: 17.95,
     description: "Beats and beach days on the shore of Lake Balaton.",
     featured: false,
+    airportCode: "BUD",
+    cityCode: "BUD",
   },
   {
     id: "les-eurockeennes",
@@ -250,6 +280,8 @@ export const festivalsSeed: Festival[] = [
     lng: 6.8629,
     description: "A rock, indie and hip-hop festival on a lakeside peninsula.",
     featured: false,
+    airportCode: "BSL",
+    cityCode: "BSL",
   },
   {
     id: "sunscape",
@@ -265,6 +297,8 @@ export const festivalsSeed: Festival[] = [
     lng: 14.9298,
     description: "Sunrise sets on Zrće Beach for a smaller, close-knit crowd.",
     featured: false,
+    airportCode: "ZAD",
+    cityCode: "ZAD",
   },
   {
     id: "fusion",
@@ -280,6 +314,8 @@ export const festivalsSeed: Festival[] = [
     lng: 12.85,
     description: "A non-commercial festival on a former airfield, run entirely by volunteers.",
     featured: false,
+    airportCode: "BER",
+    cityCode: "BER",
   },
   {
     id: "meadows",
@@ -296,6 +332,8 @@ export const festivalsSeed: Festival[] = [
     lng: 24.75,
     description: "A boutique festival tucked into the Rhodope mountains.",
     featured: false,
+    airportCode: "PDV",
+    cityCode: "PDV",
   },
   {
     id: "love-international",
@@ -311,5 +349,7 @@ export const festivalsSeed: Festival[] = [
     lng: 15.633,
     description: "A boutique beach festival built around an open-air club stage.",
     featured: false,
+    airportCode: "ZAD",
+    cityCode: "ZAD",
   },
 ];

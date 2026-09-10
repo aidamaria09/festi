@@ -4,6 +4,7 @@ import { festivalsRouter } from "./routes/festivals.js";
 import { forumRouter } from "./routes/forum.js";
 import { contactRouter } from "./routes/contact.js";
 import { quizRouter } from "./routes/quiz.js";
+import { travelRouter } from "./routes/travel.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
 export function createApp() {
@@ -21,6 +22,7 @@ export function createApp() {
   app.use("/api/forum", forumRouter);
   app.use("/api/contact", contactRouter);
   app.use("/api/quiz", quizRouter);
+  app.use("/api/travel", travelRouter);
 
   app.use(errorHandler);
 

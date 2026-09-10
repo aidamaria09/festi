@@ -1,0 +1,103 @@
+.travel-planner {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius);
+  padding: 26px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.travel-planner h3 {
+  margin: 0 0 16px;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.travel-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.travel-tabs button {
+  background: transparent;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent-light);
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.travel-tabs button.active {
+  background: var(--color-accent);
+  color: white;
+}
+
+.travel-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.travel-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.travel-form input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.travel-form button {
+  grid-column: 1 / -1;
+}
+
+.travel-error {
+  color: #ff9999;
+  text-align: center;
+}
+
+.travel-note {
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.travel-results {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.travel-results li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.travel-price {
+  font-weight: 700;
+  color: var(--color-accent-light);
+  min-width: 90px;
+}
+
+.travel-book-link {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: fit-content;
+}

@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import type { ComponentProps } from "react";
 import { describe, expect, it, vi } from "vitest";
 import { FestivalCard } from "./FestivalCard";
 import type { Festival } from "../types";
@@ -17,18 +19,28 @@ const festival: Festival = {
   lng: 0,
   description: "A test festival",
   featured: false,
+  airportCode: "TST",
+  cityCode: "TST",
 };
+
+function renderCard(props: Partial<ComponentProps<typeof FestivalCard>> = {}) {
+  return render(
+    <MemoryRouter>
+      <FestivalCard festival={festival} {...props} />
+    </MemoryRouter>
+  );
+}
 
 describe("FestivalCard", () => {
   it("renders untrusted names as plain text instead of markup", () => {
-    render(<FestivalCard festival={festival} />);
+    renderCard();
     expect(screen.getByText(festival.name)).toBeInTheDocument();
     expect(document.querySelector("img[onerror]")).toBeNull();
   });
 
   it("calls onToggleFavorite when the favorite button is clicked", async () => {
     const onToggleFavorite = vi.fn();
-    render(<FestivalCard festival={festival} isFavorite={false} onToggleFavorite={onToggleFavorite} />);
+    renderCard({ isFavorite: false, onToggleFavorite });
 
     screen.getByRole("button").click();
 

@@ -50,6 +50,22 @@
   color: #e6e0f5 !important;
 }
 
+.plan-trip-link {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: rgba(162, 89, 255, 0.15);
+  color: var(--color-accent-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.plan-trip-link:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
 .fav-btn {
   position: absolute;
   top: 8px;
