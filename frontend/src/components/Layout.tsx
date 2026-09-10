@@ -4,7 +4,6 @@ import "./Layout.css";
 const NAV_LINKS = [
   { to: "/", label: "Home", end: true },
   { to: "/festivals", label: "Festivals" },
-  { to: "/calendar", label: "Calendar" },
   { to: "/forum", label: "Forum" },
 ];
 

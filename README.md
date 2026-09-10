@@ -1,6 +1,6 @@
 # FESTI
 
-FESTI is a full-stack web app for discovering music festivals across Europe: take a short quiz to get a festival matched to your taste, browse and filter the full list, see everything on an interactive map and a month-by-month calendar, and chat with other festival-goers in a forum.
+FESTI is a full-stack web app for discovering music festivals across Europe: take a short quiz to get a festival matched to your taste, browse and filter the full list, see everything on an interactive map, and chat with other festival-goers in a forum.
 
 This started as a school project (originally in Romanian, plain HTML/CSS/JS). This version is a from-scratch rebuild: an English, typed, tested, full-stack application with a real API and database behind it.
 
@@ -9,7 +9,6 @@ This started as a school project (originally in Romanian, plain HTML/CSS/JS). Th
 - **Festival quiz** — answer three questions (genre, vibe, size) and the backend returns a matching festival.
 - **Festival browser** — filter ~20 European festivals by genre, vibe and size; favorite the ones you like (persisted locally).
 - **Interactive map** — every festival plotted on a Leaflet map, linking out to its official site.
-- **Calendar** — festivals grouped by month, generated from the same dataset that powers the rest of the app.
 - **Forum** — a simple message board backed by the API and a database.
 - **Contact form** — sends a message to the backend, which stores it.
 - **Trip planner** — on each festival's detail page, search live flight prices (via the [Sky Scrapper](https://rapidapi.com/apiheya/api/sky-scrapper) API on RapidAPI) from a departure airport to the festival's nearest airport, plus a one-click deep link out to Skyscanner (flights) or Booking.com (hotels) to complete the booking.
@@ -60,7 +59,7 @@ npm test   # runs backend and frontend test suites
 ```
 
 - Backend: API integration tests (Supertest) covering festival filtering, the quiz-matching endpoint, forum validation, and the travel routes (including a mocked Sky Scrapper flight-search flow, so the suite never needs real API credentials).
-- Frontend: unit tests for the calendar grouping logic, the trip-date helper, and the favorites hook, plus a component test asserting that user-supplied content (e.g. a forum message) is rendered as text, never as HTML.
+- Frontend: unit tests for the trip-date helper and the favorites hook, plus a component test asserting that user-supplied content (e.g. a forum message) is rendered as text, never as HTML.
 
 ## API
 

@@ -31,7 +31,6 @@ export function TravelPlanner({ festival }: { festival: Festival }) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [configured, setConfigured] = useState(true);
   const [bookingUrl, setBookingUrl] = useState<string | null>(null);
   const [flightOffers, setFlightOffers] = useState<FlightOffer[] | null>(null);
   const [hotelOffers, setHotelOffers] = useState<HotelOffer[] | null>(null);
@@ -55,7 +54,6 @@ export function TravelPlanner({ festival }: { festival: Festival }) {
           returnDate,
           adults,
         });
-        setConfigured(result.configured);
         setBookingUrl(result.bookingSearchUrl);
         setFlightOffers(result.offers);
       } else {
@@ -65,7 +63,6 @@ export function TravelPlanner({ festival }: { festival: Festival }) {
           checkOutDate: returnDate,
           adults,
         });
-        setConfigured(result.configured);
         setBookingUrl(result.bookingSearchUrl);
         setHotelOffers(result.offers);
       }
@@ -136,13 +133,6 @@ export function TravelPlanner({ festival }: { festival: Festival }) {
 
       {error && <p className="travel-error">{error}</p>}
 
-      {!configured && !error && (
-        <p className="travel-note">
-          Live prices need an Amadeus API key on the backend (see <code>backend/.env.example</code>). Showing a
-          direct search link instead.
-        </p>
-      )}
-
       {tab === "flights" && flightOffers && flightOffers.length > 0 && (
         <ul className="travel-results">
           {flightOffers.map((offer) => (
@@ -158,8 +148,10 @@ export function TravelPlanner({ festival }: { festival: Festival }) {
           ))}
         </ul>
       )}
-      {tab === "flights" && flightOffers && flightOffers.length === 0 && configured && (
-        <p className="travel-note">No flights found for those dates. Try the search link below.</p>
+      {tab === "flights" && flightOffers && flightOffers.length === 0 && !error && (
+        <p className="travel-note">
+          Live prices aren't available for this search right now. Use the search link below to check directly.
+        </p>
       )}
 
       {tab === "hotels" && hotelOffers && hotelOffers.length > 0 && (
@@ -175,8 +167,10 @@ export function TravelPlanner({ festival }: { festival: Festival }) {
           ))}
         </ul>
       )}
-      {tab === "hotels" && hotelOffers && hotelOffers.length === 0 && configured && (
-        <p className="travel-note">No hotel offers available for that city in the test environment.</p>
+      {tab === "hotels" && hotelOffers && hotelOffers.length === 0 && !error && (
+        <p className="travel-note">
+          Live hotel prices aren't wired up yet. Use the search link below to check on Booking.com.
+        </p>
       )}
 
       {bookingUrl && (
