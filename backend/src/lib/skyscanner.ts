@@ -73,10 +73,13 @@ async function resolveAirport(
   return match ? match.navigation.relevantFlightParams : null;
 }
 
-// The shape below (itineraries[].price.raw, legs[].carriers.marketing[].name, etc.)
-// is Sky Scrapper's documented "searchFlights" response. Parsing is defensive: a
-// malformed or unexpected entry is skipped rather than throwing, since this hasn't
-// been exercised against a live response yet (see README for how to verify/tweak it).
+// CONFIRMED against a live call (2026-09-10): searchFlights does NOT return itineraries
+// synchronously. It kicks off an async search session and replies with only
+// { data: { context: { sessionId, status: "complete" }, filterStats: null } } - no
+// itineraries. There's presumably a second "poll for results" endpoint (common for
+// real-time flight scrapers), but it isn't in the docs available without logging into
+// a RapidAPI account. Until that's found, `itineraries` here is always undefined, so
+// this always resolves to an empty (but crash-free) offers list - see README.
 interface FlightSearchResponse {
   data?: {
     itineraries?: Array<{
@@ -99,10 +102,10 @@ export async function searchFlights(
 ): Promise<{ configured: boolean; offers: FlightOffer[] }> {
   if (!isConfigured()) return { configured: false, offers: [] };
 
-  const [origin, destination] = await Promise.all([
-    resolveAirport(params.origin, fetchImpl),
-    resolveAirport(params.destination, fetchImpl),
-  ]);
+  // Sequential, not Promise.all: free RapidAPI tiers are often capped at ~1 request/second,
+  // and firing both lookups at once reliably triggers a 429 on the very first search.
+  const origin = await resolveAirport(params.origin, fetchImpl);
+  const destination = await resolveAirport(params.destination, fetchImpl);
 
   if (!origin || !destination) return { configured: true, offers: [] };
 

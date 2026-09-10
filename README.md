@@ -88,11 +88,11 @@ The original was four Romanian HTML pages that each duplicated the same ~300 lin
 ## What's not done
 
 - **Hotel prices aren't live.** No self-serve hotel-pricing API has been verified end-to-end yet (Amadeus's free self-service tier was decommissioned; a couple of RapidAPI options exist but weren't confirmed against a real response before shipping this). The hotels endpoint is honest about this: it always returns `configured: false` and a working Booking.com search link, rather than guessed/untested code pretending to return real prices.
-- **The Sky Scrapper flight response mapping hasn't been checked against a live call.** The request side (auth, endpoint, parameters) is confirmed from the provider's docs; the response parsing is written defensively (malformed entries are skipped, not thrown) but should be spot-checked once a real `RAPIDAPI_KEY` is in place — see `backend/src/lib/skyscanner.ts`.
+- **Live flight prices aren't showing yet, and it's now a confirmed API limitation, not a guess.** Airport lookup (`searchAirport`) works and is verified against live calls. `searchFlights`, however, doesn't return itineraries synchronously — it kicks off an async search session (`{ data: { context: { sessionId, status: "complete" } } }`, no results) the way real-time flight scrapers typically do. There's presumably a second "poll for results" endpoint, but it isn't in the docs available without a RapidAPI account login. Until that's found, the flights tab always falls back to the Skyscanner search link — safely, not with an error.
 
 ## Possible next steps
 
-- Verify the Sky Scrapper response mapping against a live call and adjust `skyscanner.ts` if needed.
+- Find Sky Scrapper's results-polling endpoint (via their RapidAPI account's interactive tester) and wire it into `searchFlights` in `skyscanner.ts`.
 - Wire up a verified hotel-pricing provider (or drop the "Hotels" tab if one never materializes).
 - Add authentication so favorites sync across devices instead of living in `localStorage`.
 - Swap SQLite for a hosted Postgres instance for production durability.
