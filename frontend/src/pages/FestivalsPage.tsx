@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api/client";
 import { FestivalCard } from "../components/FestivalCard";
 import { Filters, type FilterState } from "../components/Filters";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../context/FavoritesContext";
 import type { Festival } from "../types";
 import "./FestivalsPage.css";
 

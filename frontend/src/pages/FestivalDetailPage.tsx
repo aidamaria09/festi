@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../api/client";
 import { TravelPlanner } from "../components/TravelPlanner";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../context/FavoritesContext";
 import type { Festival } from "../types";
 import "./FestivalDetailPage.css";
 

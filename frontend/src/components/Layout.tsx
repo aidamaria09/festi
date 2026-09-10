@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { useFavorites } from "../context/FavoritesContext";
 import "./Layout.css";
 
 const NAV_LINKS = [
@@ -8,6 +9,8 @@ const NAV_LINKS = [
 ];
 
 export function Layout() {
+  const { favorites } = useFavorites();
+
   return (
     <div className="page-hero-bg">
       <header className="site-header">
@@ -23,6 +26,11 @@ export function Layout() {
               </NavLink>
             </li>
           ))}
+          <li>
+            <NavLink to="/favorites">
+              🤍 Favorites{favorites.length > 0 && <span className="nav-badge">{favorites.length}</span>}
+            </NavLink>
+          </li>
         </ul>
       </nav>
 
