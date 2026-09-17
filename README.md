@@ -50,7 +50,6 @@ cd frontend && npm install && npm run dev   # app on http://localhost:5173
 
 The frontend reads the API URL from `VITE_API_URL` (see `frontend/.env.example`); it defaults to `http://localhost:4000`.
 
-To get live flight prices in the trip planner: sign up free at [rapidapi.com](https://rapidapi.com), open the [Sky Scrapper](https://rapidapi.com/apiheya/api/sky-scrapper) listing, subscribe to the BASIC ($0.00/mo) plan, and put your key in `backend/.env` as `RAPIDAPI_KEY` (see `backend/.env.example`). Without a key, the planner still works — it shows a note and falls back to a Skyscanner search link. Hotel prices aren't wired to a live provider yet (see "What's not done" below) — that side always shows a Booking.com search link.
 
 ## Testing
 
@@ -97,8 +96,6 @@ The original was four Romanian HTML pages that each duplicated the same ~300 lin
 - Swap SQLite for a hosted Postgres instance for production durability.
 - Let organizers submit new festivals through an admin view instead of editing the seed file.
 - Cache Sky Scrapper responses (same route/query) for a few minutes to stay well under the free-tier rate limit.
-
-**Note on Skyscanner/Booking.com:** neither offers a self-serve public API — both require an approved business partnership (Amadeus's free self-service developer tier, which this project first targeted, was also decommissioned). The trip planner instead uses Sky Scrapper (a Skyscanner-data wrapper on RapidAPI) for real flight price data, and links out to Skyscanner/Booking.com's own search pages to complete a booking, rather than pretending to integrate with APIs that aren't actually open.
 
 ## Credits
 
